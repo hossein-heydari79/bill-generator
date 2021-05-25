@@ -4,6 +4,7 @@ import { data, main_render, Inventory } from './main.js'
 let func_plus = (i) => {
 
     let all = document.getElementById("all");
+    let service = document.getElementById("service");
 
     let item = data.find((item, index) => i === index);
     if (item.count < 9) {
@@ -25,13 +26,35 @@ let func_plus = (i) => {
         all.innerHTML = Inventory.price();
     }
 
+    if ((Inventory.price() * (2 / 100)) != 0) {
+        service.innerHTML = `${(Inventory.price() * 2) * 10}`;
+    }
+    else {
+        service.innerHTML = 0;
+    }
+
     main_render();
 }
+
+let funcAll = document.getElementById("funcAll");
+funcAll.addEventListener("click", () => {
+    let all_price = document.getElementById("all-price");
+
+    if (Inventory.price() + (Inventory.price() * 2) * 10 == 0) {
+        all_price.innerHTML = 0;
+    }
+    else {
+        all_price.innerHTML = `${Inventory.price() * 1000 + (Inventory.price() * 2) * 10}`
+    }
+
+})
+
 
 
 let func_minus = (i) => {
 
     let all = document.getElementById("all");
+    let service = document.getElementById("service");
 
     let item = data.find((item, index) => index === i);
     if (item.count > 0) {
@@ -51,6 +74,13 @@ let func_minus = (i) => {
     }
     else {
         all.innerHTML = Inventory.price();
+    }
+
+    if ((Inventory.price() * (2 / 100)) != 0) {
+        service.innerHTML = `${(Inventory.price() * 2) * 10}`;
+    }
+    else {
+        service.innerHTML = 0;
     }
 
     main_render();
