@@ -1,4 +1,4 @@
-import { data, main_render, Inventory } from './main.js'
+import { data, main_render, Inventory, off } from './main.js'
 
 
 let func_plus = (i) => {
@@ -39,12 +39,13 @@ let func_plus = (i) => {
 let funcAll = document.getElementById("funcAll");
 funcAll.addEventListener("click", () => {
     let all_price = document.getElementById("all-price");
+    let done = document.getElementById("done").innerHTML;
 
     if (Inventory.price() + (Inventory.price() * 2) * 10 == 0) {
         all_price.innerHTML = 0;
     }
     else {
-        all_price.innerHTML = `${Inventory.price() * 1000 + (Inventory.price() * 2) * 10}`
+        all_price.innerHTML = `${Inventory.price() * 1000 + ((Inventory.price() * 2) * 10) - done}`
     }
 
 })
@@ -103,5 +104,32 @@ let func_price = (i) => {
 
 }
 
+let occured = document.getElementById("occured");
+
+occured.addEventListener("click", () => {
+    let off_code = document.getElementById("off-code").value;
+    let index = off.findIndex((item) => item == off_code);
+
+    if (index != -1) {
+        document.getElementById("off-code").style.backgroundColor = "white";
+        if (off[index] == "gold") {
+            let done = document.getElementById("done");
+            done.innerHTML = `${(Inventory.price() * 20) * 10}`
+        }
+
+        if (off[index] == "silver") {
+            let done = document.getElementById("done");
+            done.innerHTML = `${(Inventory.price() * 10) * 10}`
+        }
+
+        if (off[index] == "bronze") {
+            let done = document.getElementById("done");
+            done.innerHTML = `${(Inventory.price() * 5) * 10}`
+        }
+    }
+    else {
+        document.getElementById("off-code").style.backgroundColor = "#FBDFDC";
+    }
+})
 
 export { func_minus, func_plus, func_price };

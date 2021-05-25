@@ -8,6 +8,8 @@ let Inventory = {
     },
 };
 
+let off = ["gold", "silver", "bronze"];
+
 let data = [
     {
         img: "https://picsum.photos/100",
@@ -135,4 +137,4 @@ main_render();
 
 
 
-export { data, main_render, Inventory };
+export { data, main_render, Inventory, off };
