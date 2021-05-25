@@ -208,6 +208,7 @@ i {
     color: rgb(233, 78, 62);
 }
 
-i:hover {
+i:hover,
+button:hover {
     cursor: pointer;
 }

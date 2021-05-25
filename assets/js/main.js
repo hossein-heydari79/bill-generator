@@ -1,5 +1,12 @@
 import { func_minus, func_plus, func_price } from './funcs.js'
 
+let Inventory = {
+    select: [],
+    price() {
+
+        return this.select.reduce((sum, item) => sum + (parseInt(item.count) * parseInt(item.price)), 0);
+    },
+};
 
 let data = [
     {
@@ -128,4 +135,4 @@ main_render();
 
 
 
-export { data, main_render };
+export { data, main_render, Inventory };
